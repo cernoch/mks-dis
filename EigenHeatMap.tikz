@@ -1,0 +1,30 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=4.774in,
+height=5.009in,
+at={(0.801in,0.676in)},
+scale only axis,
+point meta min=0,
+point meta max=18.8454888684911,
+axis on top,
+xmin=1.5,
+xmax=16.5,
+xlabel={$\text{d}_\text{m}\text{ax (number of depths)}$},
+y dir=reverse,
+ymin=0.5,
+ymax=16.5,
+ylabel={p (number of positions)},
+axis background/.style={fill=white},
+colormap={mymap}{[1pt] rgb(0pt)=(1,0,0); rgb(10pt)=(1,0.9375,0); rgb(11pt)=(0.96875,1,0); rgb(21pt)=(0.03125,1,0); rgb(22pt)=(0,1,0.0625); rgb(32pt)=(0,1,1); rgb(42pt)=(0,0.0625,1); rgb(43pt)=(0.03125,0,1); rgb(53pt)=(0.96875,0,1); rgb(54pt)=(1,0,0.9375); rgb(63pt)=(1,0,0.09375)},
+colorbar
+]
+\addplot [forget plot] graphics [xmin=1.5,xmax=16.5,ymin=0.5,ymax=16.5] {EigenHeatMap-1.png};
+\end{axis}
+\end{tikzpicture}%
