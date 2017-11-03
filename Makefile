@@ -162,13 +162,13 @@ MinGvlPairwise%.tex: MinGvlPairwise.sh MinGvlLib.sh Diagonal.sqlite
 # Plot various scatterplots
 %.tex: %.plt %.dat
 	gnuplot $<
-BaselineSag%.dat: DiagonalBenchmark.csv CSVtoGNUplot.sh
+BaselineSag%.dat: PolyDiag.csv CSVtoGNUplot.sh
 	bash CSVtoGNUplot.sh $* 17,20 < $< > $@
-SagExact%.dat: DiagonalBenchmark.csv CSVtoGNUplot.sh
+SagExact%.dat: PolyDiag.csv CSVtoGNUplot.sh
 	bash CSVtoGNUplot.sh $* 20,26 < $< > $@
-GreedyExact%.dat: DiagonalBenchmark.csv CSVtoGNUplot.sh
+GreedyExact%.dat: PolyDiag.csv CSVtoGNUplot.sh
 	bash CSVtoGNUplot.sh $* 23,26 < $< > $@
-SagGreedy%.dat: DiagonalBenchmark.csv CSVtoGNUplot.sh
+SagGreedy%.dat: PolyDiag.csv CSVtoGNUplot.sh
 	bash CSVtoGNUplot.sh $* 20,23 < $< > $@
 # and histograms
 GreedyExactHist.tex: GreedyExactHist.plt GreedyExactSkew.dat
