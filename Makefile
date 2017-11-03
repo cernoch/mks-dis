@@ -5,6 +5,7 @@ SQLITE = sqlite3
 endif
 
 .PHONY: sqlite listings clean clean2 clean3
+.PRECIOUS: %.aux %.bbl
 default: LockChartSolving.pdf
 
 TIKZ_PLOTS += BaselineSagSkew.tex
@@ -95,20 +96,28 @@ LISTINGS += lstlang2.sty
 LISTINGS += lstlang3.sty
 LISTINGS += lstmisc.sty
 
-# The final PDF
-LockChartSolving.pdf: LockChartSolving.tex LockChartSolving.bbl LockChartSolving1-blx.bbl LockChartSolving2-blx.bbl LockChartSolving3-blx.bbl
+# 4) The final PDF
+#    BBL files are touched, because AUX files
+#    (their prerequisites) are regenreated.
+LockChartSolving.pdf: LockChartSolving.tex LockChartSolving.bbl\
+		LockChartSolving1-blx.bbl LockChartSolving2-blx.bbl LockChartSolving3-blx.bbl
 	xelatex -shell-escape $<
 	xelatex -shell-escape $<
+	touch $?
+	touch $@
+# 3) Run BIBTEX to create bibliographies.
 %.bbl: %.aux
 	bibtex8 $<
-LockChartSolving.aux: LockChartSolving.tex
-	rm -f LockChartSolving.aux
+# 2) Create AUX files with lists of references.
+LockChartSolvin%.aux: LockChartSolving.tex
 	xelatex -shell-escape $<
+# 1) Convert LYX to TEX.
+#    We touch the file, because LYX does not update timestamps.
 LockChartSolving.tex: LockChartSolving.lyx\
 	$(LUA_FILES) $(LISTINGS) $(TIKZ_PLOTS) $(TIKZ_STATS)\
-	$(IPE_GRAPHICS) $(STATISTICS) $(MIN_GVL_STAT)\
-	EigenHeatCont.tikz
+	$(IPE_GRAPHICS) $(STATISTICS) $(MIN_GVL_STAT) EigenHeatCont.tikz
 	lyx $< -E xetex $@
+	touch $@
 
 # Images produced by matlab-tikz 
 ifeq ($(OS),Windows_NT)
