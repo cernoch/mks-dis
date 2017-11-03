@@ -96,6 +96,11 @@ LISTINGS += lstlang2.sty
 LISTINGS += lstlang3.sty
 LISTINGS += lstmisc.sty
 
+# 5) Reduced size PDF
+LockChartSolvingWeb.pdf: LockChartSolving.pdf
+	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/default \
+    	-dNOPAUSE -dQUIET -dBATCH -dDetectDuplicateImages \
+    	-dCompressFonts=true -r150 -sOutputFile=$@ $<
 # 4) The final PDF
 #    BBL files are touched, because AUX files
 #    (their prerequisites) are regenreated.
