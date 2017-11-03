@@ -150,8 +150,8 @@ DiagonalMaximum.tex: DiagonalMaximum.sh Diagonal.sqlite
 	bash $< > $@
 DiagonalRatio.tex: DiagonalRatio.sh Diagonal.sqlite
 	bash $< > $@
-$(MIN_GVL_STAT): MinGvlStats.sh Diagonal.sqlite
-	bash $<
+MinGvl%.txt: MinGvlStats.sh Diagonal.sqlite
+	bash $< $* > $@
 MinGvl%.tex: MinGvl%.sh MinGvlLib.sh Diagonal.sqlite
 	bash $< > $@
 MinGvlAbsolute%.tex: MinGvlAbsolute.sh MinGvlLib.sh Diagonal.sqlite
